@@ -10,21 +10,13 @@ import {
  import Main from './pages/Main';
  import Order from './pages/Order'
 
- export default class App extends React.Component {
-    state = {
-        isLogin: true
-    }
+ import {connect} from 'react-redux'
 
-    componentDidMount(){
-        const data = JSON.parse(localStorage.getItem('dataAccount'))
-        if (!data){
-            this.setState({isLogin: false})
-        }
-    }
+class App extends React.Component {
      render(){
          return(
              <BrowserRouter>
-                {this.state.isLogin && <Navbar {...this.props} />}
+                {this.props.auth.data.token && <Navbar {...this.props} />}
                 <Switch>
                     <Route path="/" exact render={(props) => (<Main {...props} />)} />
                     <Route path="/login" render={(props) => ( <Login {...props} /> )} />
@@ -35,3 +27,11 @@ import {
          )
      }
  }
+
+ const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(App)

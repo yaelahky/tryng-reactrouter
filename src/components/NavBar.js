@@ -55,7 +55,7 @@ class NavBarEdited extends Component {
               <Collapse isOpen={this.state.collapsed} navbar>
                 <Nav navbar>
                   <NavItem>
-                    <Link to="/order">Pesan</Link>
+                    <Link to="/order">Manage Product</Link>
                   </NavItem>
                   <NavItem>
                 <NavLink onClick={(event) => {this.handleLogout(event)}}>Logout</NavLink>

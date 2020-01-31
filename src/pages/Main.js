@@ -1,9 +1,9 @@
 import React from "react";
+import {connect} from "react-redux"
 
 class Main extends React.Component {
     componentDidMount(){
-        const data = JSON.parse(localStorage.getItem('dataAccount'))
-        if (data){
+        if (this.props.auth.data.token){
             this.props.history.push('/home')
         } else {
             this.props.history.push('/login')
@@ -15,4 +15,10 @@ class Main extends React.Component {
     }
 }
 
-export default Main;
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Main);
